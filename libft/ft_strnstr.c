@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 16:52:52 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/06 16:52:54 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/06 17:43:13 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/06 17:43:14 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*strnstr(const char *big, const char *little, size_t len)
 {
-	char	cc;
-	char	*tmp;
-	int		i;
+	size_t	i;
+	size_t	tmp;
 
+	if ((char *)little == NULL)
+		return ((char *)big);
 	i = 0;
-	tmp = (char *)s;
-	cc = (char)c;
-	while (tmp[i] != '\0')
+	while (big[i] != '\0' && i < len)
 	{
-		if (tmp[i] == cc)
-			return (&tmp[i]);
-		i++;
+		tmp = 0;
+		if (little[tmp] == big[i + tmp])
+		{
+			while (little[tmp] && big[i + tmp])
+			{
+				if (little[tmp] != big[i + tmp] || (i + tmp) >= len)
+					break ;
+				tmp++;
+			}
+			if (little[tmp] == '\0')
+				return (&((char *)big)[i]);
+		}
 	}
 	return (NULL);
 }

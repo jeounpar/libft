@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 16:52:52 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/06 16:52:54 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/06 17:50:16 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/06 17:50:18 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	char	cc;
 	char	*tmp;
 	int		i;
 
-	i = 0;
+	i = ft_strlen(s) - 1;
 	tmp = (char *)s;
 	cc = (char)c;
-	while (tmp[i] != '\0')
+	while (i > -1)
 	{
 		if (tmp[i] == cc)
 			return (&tmp[i]);
-		i++;
+		i--;
 	}
 	return (NULL);
 }
