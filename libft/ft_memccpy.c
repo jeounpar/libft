@@ -25,7 +25,10 @@ void	*memccpy(void *dest, const void *src, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		/* code */
+		dest_str[i] = src_str[i];
+		if (src_str[i] == cc)
+			return (&dest_str[i + 1]);
+		i++;
 	}
-	
+	return (NULL);
 }
