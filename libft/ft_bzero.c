@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 16:52:52 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/06 16:52:54 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/06 21:51:37 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/06 21:51:38 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	cc;
-	char			*tmp;
-	int				i;
+	size_t	i;
+	char	*str;
 
+	str = (char *)s;
 	i = 0;
-	tmp = (char *)s;
-	cc = (unsigned char)c;
-	while (tmp[i] != '\0')
+	while (i < n)
 	{
-		if (tmp[i] == cc)
-			return (&tmp[i]);
+		str[i] = 0;
 		i++;
 	}
-	return (NULL);
 }

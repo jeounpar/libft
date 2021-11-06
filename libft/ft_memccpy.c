@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 16:52:52 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/06 16:52:54 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/06 22:10:56 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/06 22:10:57 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*memccpy(void *dest, const void *src, int c, size_t n)
 {
+	size_t			i;
+	char			*dest_str;
+	char			*src_str;
 	unsigned char	cc;
-	char			*tmp;
-	int				i;
 
-	i = 0;
-	tmp = (char *)s;
+	dest_str = (char *)dest;
+	src_str = (char *)src;
 	cc = (unsigned char)c;
-	while (tmp[i] != '\0')
+	i = 0;
+	while (i < n)
 	{
-		if (tmp[i] == cc)
-			return (&tmp[i]);
-		i++;
+		/* code */
 	}
-	return (NULL);
+	
 }
