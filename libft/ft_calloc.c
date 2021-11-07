@@ -15,7 +15,6 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*str;
-	int		i;
 
 	str = (void *)malloc(nmemb * size);
 	if (str == NULL)

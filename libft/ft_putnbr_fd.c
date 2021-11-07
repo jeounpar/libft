@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 static void	ft_putchar(char c, int fd)
 {
-	write (1, &c, 1);
+	write (fd, &c, 1);
 }
 
 void	ft_putnbr_fd(int n, int fd)
