@@ -10,4 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+int	ft_isalpha(int c)
+{
+	unsigned char	tmp;
+
+	tmp = (unsigned char)c;
+	if (tmp >= 'A' && tmp <= 'Z' || tmp >= 'a' && tmp <= 'z')
+		return (1);
+	return (0);
+}
