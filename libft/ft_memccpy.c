@@ -15,12 +15,12 @@
 void	*memccpy(void *dest, const void *src, int c, size_t n)
 {
 	size_t			i;
-	char			*dest_str;
-	char			*src_str;
+	unsigned char	*dest_str;
+	unsigned char	*src_str;
 	unsigned char	cc;
 
-	dest_str = (char *)dest;
-	src_str = (char *)src;
+	dest_str = (unsigned char *)dest;
+	src_str = (unsigned char *)src;
 	cc = (unsigned char)c;
 	i = 0;
 	while (i < n)
