@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 12:41:00 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 12:41:01 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/07 13:32:10 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/07 13:32:11 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*dest_str;
-	unsigned char	*src_str;
+	size_t			i;
+	unsigned char	tmp;
+	unsigned char	*str;
 
-	if (dest == src || n == 0)
-		return (dest);
-	dest_str = (unsigned char *)dest;
-	src_str = (unsigned char *)src;
-	if (dest < src)
+	i = 0;
+	tmp = c;
+	str = (unsigned char *)s;
+	while (str[i] != '\0' && i < n)
 	{
-		while (n--)
-			*dest_str++ = *src_str++;
+		if (str[i] == tmp)
+			return (&str[i]);
+		i++;
 	}
-	else
-	{
-		while (n--)
-			*(dest_str + n) = *(src_str + n);
-	}
-	return (dest);
+	return (NULL);
 }

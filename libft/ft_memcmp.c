@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 12:41:00 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 12:41:01 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/07 13:39:50 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/07 13:39:51 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*dest_str;
-	unsigned char	*src_str;
+	size_t			i;
+	unsigned char	*s1_str;
+	unsigned char	*s2_str;
 
-	if (dest == src || n == 0)
-		return (dest);
-	dest_str = (unsigned char *)dest;
-	src_str = (unsigned char *)src;
-	if (dest < src)
+	i = 0;
+	s1_str = (unsigned char	*)s1;
+	s2_str = (unsigned char *)s2;
+	while (i < n)
 	{
-		while (n--)
-			*dest_str++ = *src_str++;
+		if (s1_str[i] != s2_str[i])
+			return (s1_str[i] - s2_str[i]);
+		i++;
 	}
-	else
-	{
-		while (n--)
-			*(dest_str + n) = *(src_str + n);
-	}
-	return (dest);
+	return (0);
 }
