@@ -47,16 +47,19 @@ BONUS_SRCS = ft_lstnew.c \
 	ft_lstmap.c
 BONUS_OBJECTS = $(BONUS_SRCS:.c=.o)
 
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJECTS) $(BONUS_OBJECTS)
+else
+	OBJ_FILES = $(OBJECTS)
+endif
+
 all: $(NAME)
 
-.c.o:
-	$(CC) $(CFLAGS) $< -o $(<:.c=.o) 
+$(NAME) : $(OBJ_FILES)
+	ar rcs $(NAME) $(OBJECTS)
 
-$(NAME): $(OBJECTS)
-	ar rcs $@ $^
-	
-bonus: $(BONUS_OBJECTS)
-	ar rcs $(NAME) $^
+bonus :
+	make WITH_BONUS=1 all
 
 clean:
 	rm -f $(OBJECTS) $(BONUS_OBJECTS)
@@ -66,4 +69,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: .c.o all clean fclean re
+.PHONY: all bonus clean fclean re
