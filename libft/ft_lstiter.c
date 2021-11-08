@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 12:41:00 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 12:41:01 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/08 21:08:51 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/08 21:08:51 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned char	*dest_str;
-	unsigned char	*src_str;
+	t_list	*cur_node;
 
-	if (dest == src || n == 0)
-		return (dest);
-	dest_str = (unsigned char *)dest;
-	src_str = (unsigned char *)src;
-	if (dest < src)
-		while (n--)
-			*dest_str++ = *src_str++;
-	else
-		while (n--)
-			*(dest_str + n) = *(src_str + n);
-	return (dest);
+	if (lst == NULL || f == NULL)
+		return ;
+	cur_node = lst;
+	while (cur_node != NULL)
+	{
+		f(cur_node->content);
+		cur_node = cur_node->next;
+	}
 }

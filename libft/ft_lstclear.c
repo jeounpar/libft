@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 12:41:00 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 12:41:01 by jeounpar         ###   ########.fr       */
+/*   Created: 2021/11/08 21:04:30 by jeounpar          #+#    #+#             */
+/*   Updated: 2021/11/08 21:04:31 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	unsigned char	*dest_str;
-	unsigned char	*src_str;
+	t_list	*current_node;
 
-	if (dest == src || n == 0)
-		return (dest);
-	dest_str = (unsigned char *)dest;
-	src_str = (unsigned char *)src;
-	if (dest < src)
-		while (n--)
-			*dest_str++ = *src_str++;
-	else
-		while (n--)
-			*(dest_str + n) = *(src_str + n);
-	return (dest);
+	current_node = *lst;
+	while (1)
+	{
+		*lst = current_node->next;
+		del(current_node->content);
+		free(current_node);
+		if (*lst == NULL)
+			break ;
+		current_node = *lst;
+	}
 }
