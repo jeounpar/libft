@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:35:13 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 16:35:15 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:18:47 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	unsigned char	tmp;
-
-	tmp = (unsigned char)c;
-	if (tmp >= '0' && tmp <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
