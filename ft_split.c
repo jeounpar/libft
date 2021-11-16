@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 22:17:53 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/17 02:07:05 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/17 02:25:11 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static int	cnt_word(char *str, char set)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		while (str[i] != '\0' && (str[i]))
+		while (str[i] != '\0' && (is_ok(str[i], set)))
 			i++;
-		if (str[i] != '\0' && !(str[i]))
+		if (str[i] != '\0' && !(is_ok(str[i], set)))
 		{
 			cnt++;
-			while (str[i] != '\0' && !(str[i]))
+			while (str[i] != '\0' && !(is_ok(str[i], set)))
 				i++;
 		}
 	}
@@ -51,21 +51,21 @@ static int	words_malloc(char *str, char set, char **words)
 	idx = 0;
 	while (str[i] != '\0')
 	{
-		if (!str[i])
+		if (!is_ok(str[i], set))
 		{
 			j++;
 			if (is_ok(str[i + 1], set))
 			{
 				words[idx] = (char *)malloc((j + 1) * sizeof(char));
 				if (words[idx] == NULL)
-					return (idx);
+					return (0);
 				idx++;
 				j = 0;
 			}
 		}
 		i++;
 	}
-	return (-1);
+	return (1);
 }
 
 static void	wr_words(char *str, char set, char **words)
@@ -79,7 +79,7 @@ static void	wr_words(char *str, char set, char **words)
 	idx = 0;
 	while (str[i] != '\0')
 	{
-		if (!str[i])
+		if (!is_ok(str[i], set))
 		{
 			words[idx][j] = str[i];
 			j++;
@@ -106,9 +106,9 @@ char	**ft_split(char const *s, char c)
 	words = (char **)malloc((cnt + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-	i = 0;
-	if (words_malloc(str, c, words) != -1)
+	if (words_malloc(str, c, words) == 0)
 	{
+		i = 0;
 		while (words[i])
 		{
 			free(words[i]);
