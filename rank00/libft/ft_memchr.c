@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 13:32:10 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/16 17:33:11 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:36:15 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	tmp = (unsigned char)c;
 	str = (unsigned char *)s;
-	while (str[i] != NULL && i < n)
+	while (i < n)
 	{
 		if (str[i] == tmp)
 			return (&str[i]);
