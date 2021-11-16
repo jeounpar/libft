@@ -14,12 +14,12 @@
 
 static size_t	my_strlen(const char *str)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
