@@ -45,15 +45,13 @@ SRCS = ft_memset.c \
 	ft_lstmap.c
 OBJECTS = $(SRCS:.c=.o)
 
-OBJ_FILES = $(OBJECTS)
-
 all: $(NAME)
 
-$(NAME) : $(OBJ_FILES)
+$(NAME) : $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 clean:
-	rm -f $(OBJECTS) $(BONUS_OBJECTS)
+	rm -f $(OBJECTS)
 
 fclean: clean
 	rm -f $(NAME)
