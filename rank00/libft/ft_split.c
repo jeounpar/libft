@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 22:17:53 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 22:17:54 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/17 02:07:05 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static int	cnt_word(char *str, char set)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		while (str[i] != '\0' && (is_ok(str[i], set)))
+		while (str[i] != '\0' && (str[i]))
 			i++;
-		if (str[i] != '\0' && !(is_ok(str[i], set)))
+		if (str[i] != '\0' && !(str[i]))
 		{
 			cnt++;
-			while (str[i] != '\0' && !(is_ok(str[i], set)))
+			while (str[i] != '\0' && !(str[i]))
 				i++;
 		}
 	}
 	return (cnt);
 }
 
-static void	words_malloc(char *str, char set, char **words)
+static int	words_malloc(char *str, char set, char **words)
 {
 	int	i;
 	int	j;
@@ -51,18 +51,21 @@ static void	words_malloc(char *str, char set, char **words)
 	idx = 0;
 	while (str[i] != '\0')
 	{
-		if (!is_ok(str[i], set))
+		if (!str[i])
 		{
 			j++;
 			if (is_ok(str[i + 1], set))
 			{
 				words[idx] = (char *)malloc((j + 1) * sizeof(char));
+				if (words[idx] == NULL)
+					return (idx);
 				idx++;
 				j = 0;
 			}
 		}
 		i++;
 	}
+	return (-1);
 }
 
 static void	wr_words(char *str, char set, char **words)
@@ -76,7 +79,7 @@ static void	wr_words(char *str, char set, char **words)
 	idx = 0;
 	while (str[i] != '\0')
 	{
-		if (!is_ok(str[i], set))
+		if (!str[i])
 		{
 			words[idx][j] = str[i];
 			j++;
@@ -94,6 +97,7 @@ static void	wr_words(char *str, char set, char **words)
 char	**ft_split(char const *s, char c)
 {
 	int		cnt;
+	int		i;
 	char	*str;
 	char	**words;
 
@@ -102,7 +106,17 @@ char	**ft_split(char const *s, char c)
 	words = (char **)malloc((cnt + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-	words_malloc(str, c, words);
+	i = 0;
+	if (words_malloc(str, c, words) != -1)
+	{
+		while (words[i])
+		{
+			free(words[i]);
+			i++;
+		}
+		free(words);
+		return (NULL);
+	}
 	wr_words(str, c, words);
 	words[cnt] = NULL;
 	return (words);

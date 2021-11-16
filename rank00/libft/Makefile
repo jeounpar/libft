@@ -69,7 +69,7 @@ endif
 all: $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	ar rcs $(NAME) $(OBJECTS)
+	ar rcs $(NAME) $(OBJ_FILES)
 
 clean:
 	rm -f $(OBJECTS) $(OBJECTS_BONUS)
