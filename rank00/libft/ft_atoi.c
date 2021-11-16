@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 14:28:32 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/16 18:44:15 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:51:37 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	ft_atoi(const char *nptr)
 	char	*str;
 	int		neg;
 	int		cnt;
-	int		result;
 	int		i;
+	int		result;
 
 	str = (char *)nptr;
 	neg = 1;

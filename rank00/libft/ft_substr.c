@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 19:21:32 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/16 18:48:03 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:07:05 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,20 @@ static size_t	my_strlen(const char *str)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*tmp;
 	char	*str;
 	size_t	i;
+	size_t	s_len;
 
-	tmp = (char *)s;
+	s_len = my_strlen(s);
+	if (s == NULL)
+		return (NULL);
 	str = (char *)malloc((len + 1) * sizeof(char));
-	if (str == NULL || start >= my_strlen(s))
+	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (i < len && tmp[i] != '\0')
+	while (i < len && s[i] != '\0' && start < s_len)
 	{
-		str[i] = tmp[start];
+		str[i] = s[start];
 		i++;
 		start++;
 	}
