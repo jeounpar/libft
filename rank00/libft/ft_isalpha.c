@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:35:09 by jeounpar          #+#    #+#             */
-/*   Updated: 2021/11/07 16:35:10 by jeounpar         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:17:02 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	unsigned char	tmp;
-
-	tmp = (unsigned char)c;
-	if ((tmp >= 'A' && tmp <= 'Z') || (tmp >= 'a' && tmp <= 'z'))
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
 	return (0);
 }
