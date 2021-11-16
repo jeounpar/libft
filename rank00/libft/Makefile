@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_memset.c \
 	ft_bzero.c \
 	ft_memcpy.c \
@@ -34,9 +34,7 @@ SRCS = ft_memset.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_fd.c
-OBJECTS = $(SRCS:.c=.o)
-BONUS_SRCS = ft_lstnew.c \
+	ft_putnbr_fd.c \
 	ft_lstadd_front.c \
 	ft_lstsize.c \
 	ft_lstlast.c \
@@ -45,21 +43,14 @@ BONUS_SRCS = ft_lstnew.c \
 	ft_lstclear.c \
 	ft_lstiter.c \
 	ft_lstmap.c
-BONUS_OBJECTS = $(BONUS_SRCS:.c=.o)
+OBJECTS = $(SRCS:.c=.o)
 
-ifdef WITH_BONUS
-	OBJ_FILES = $(OBJECTS) $(BONUS_OBJECTS)
-else
-	OBJ_FILES = $(OBJECTS)
-endif
+OBJ_FILES = $(OBJECTS)
 
 all: $(NAME)
 
 $(NAME) : $(OBJ_FILES)
 	ar rcs $(NAME) $(OBJECTS)
-
-bonus :
-	make WITH_BONUS=1 all
 
 clean:
 	rm -f $(OBJECTS) $(BONUS_OBJECTS)
