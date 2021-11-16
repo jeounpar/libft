@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/17 00:17:39 by jeounpar          #+#    #+#              #
+#    Updated: 2021/11/17 00:17:41 by jeounpar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -34,8 +46,10 @@ SRCS = ft_memset.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
-	ft_lstnew.c \
+	ft_putnbr_fd.c
+OBJECTS = $(SRCS:.c=.o)
+
+SRCS_BONUS = ft_lstnew.c \
 	ft_lstadd_front.c \
 	ft_lstsize.c \
 	ft_lstlast.c \
@@ -44,19 +58,28 @@ SRCS = ft_memset.c \
 	ft_lstclear.c \
 	ft_lstiter.c \
 	ft_lstmap.c
-OBJECTS = $(SRCS:.c=.o)
+OBJECTS_BONUS = $(SRCS_BONUS:.c=.o)
+
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJECTS) $(OBJECTS_BONUS)
+else
+	OBJ_FILES = $(OBJECTS)
+endif
 
 all: $(NAME)
 
-$(NAME) : $(OBJECTS)
+$(NAME) : $(OBJ_FILES)
 	ar rcs $(NAME) $(OBJECTS)
 
 clean:
-	rm -f $(OBJECTS)
-
+	rm -f $(OBJECTS) $(OBJECTS_BONUS)
+  
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+bonus :
+	make WITH_BONUS=1 all
 
 .PHONY: all bonus clean fclean re
